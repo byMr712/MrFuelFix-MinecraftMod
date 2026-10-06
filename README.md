@@ -37,7 +37,7 @@
 
 1. Скачайте последнюю версию мода со страницы на [CurseForge](https://www.curseforge.com/minecraft/mc-mods/mr-fuel-fix) или [GitHub Releases](https://github.com/byMr712/MrFuelFix-MinecraftMod/releases).
 2. Требуются:
-   - [Fabric API](https://modrinth.com/mod/fabric-api)
+   - Только ядро ​​Fabric - другие моды, такие как Fabric API, не требуются.
 3. Поместите `.jar` файл в папку `mods`.
 4. Запустите игру.
 

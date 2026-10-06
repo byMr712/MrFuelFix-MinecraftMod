@@ -37,7 +37,7 @@ In vanilla Minecraft, wood items, sticks, and logs are **both smeltable and fuel
 
 1. Download the latest release from [CurseForge](https://www.curseforge.com/minecraft/mc-mods/mr-fuel-fix) or [GitHub Releases](https://github.com/byMr712/MrFuelFix-MinecraftMod/releases).
 2. Requires:
-   - [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api)
+   - Fabric core only - other mods like Fabric API are not required.
 3. Place the `.jar` file into your `mods` folder.
 4. Launch the game.
 
