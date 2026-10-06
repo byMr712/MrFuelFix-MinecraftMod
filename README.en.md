@@ -1,14 +1,14 @@
-> **Language:** [Русский](README.md) · English
+﻿> **Language:** [Русский](README.md) · English
 
-# [MR] Fuel Fix (Minecraft 1.21.4 Fabric)
+# [MR] Fuel Fix
 
-![Java 21](https://img.shields.io/badge/Java-21-blue.svg)
-![Minecraft](https://img.shields.io/badge/Minecraft-1.21.4-blue.svg)
+![Java 25](https://img.shields.io/badge/Java-25-blue.svg)
+![Minecraft](https://img.shields.io/badge/Minecraft-26.2-blue.svg)
 ![Fabric](https://img.shields.io/badge/Loader-Fabric-blue.svg)
 ![ModMenu](https://img.shields.io/badge/ModMenu-Supported-blue.svg)
 ![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)
 
-A lightweight mod for **Minecraft 1.21.4 (Fabric)** that fixes the annoying vanilla issue where quick-moving fuel (**Shift + Left Click**) into furnaces fails when the smelting slot is occupied.
+A lightweight mod for **Minecraft 26.2 (Fabric)** that fixes the annoying vanilla issue where quick-moving fuel (**Shift + Left Click**) into furnaces fails when the smelting slot is occupied.
 
 | Vanilla game | Game with mod |
 | :---: | :---: |
@@ -35,7 +35,7 @@ In vanilla Minecraft, wood items, sticks, and logs are **both smeltable and fuel
 
 ## Installation
 
-1. Download the latest release from [CurseForge](https://www.curseforge.com/minecraft/mc-mods/mr-fuel-fix) or [GitHub Releases](https://github.com/byMr712/MrFuelFix-1.21.4-MinecraftMod/releases).
+1. Download the latest release from [CurseForge](https://www.curseforge.com/minecraft/mc-mods/mr-fuel-fix) or [GitHub Releases](https://github.com/byMr712/MrFuelFix-MinecraftMod/releases).
 2. Requires:
    - [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api)
 3. Place the `.jar` file into your `mods` folder.
