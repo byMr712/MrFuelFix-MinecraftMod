@@ -35,4 +35,4 @@
 
 ## Команды сборки
 - Полная сборка JAR: `./gradlew build`
-- Выходной файл: `build/libs/MrFuelFix-Fabric-26.2-byMr712-v1.0.jar`
+- Выходной файл: `build/libs/MrFuelFix-Fabric-26.2-byMr712-v1.1.jar`
