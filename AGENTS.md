@@ -1,4 +1,4 @@
-# Developer & Agent Guidelines — MrFuelFix (1.21.4)
+﻿# Developer & Agent Guidelines — MrFuelFix (1.21.4)
 
 ## Версия и стек
 - **Minecraft:** 1.21.4
