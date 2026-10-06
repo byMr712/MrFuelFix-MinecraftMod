@@ -1,0 +1,4 @@
+{
+  "modmenu.nameTranslation.furnacefuelfix": "[MR] Fuel Fix",
+  "modmenu.descriptionTranslation.furnacefuelfix": "Intelligently directs shift-clicked fuel into the furnace fuel slot when the top input slot is occupied or full."
+}

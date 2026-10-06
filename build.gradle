@@ -1,0 +1,97 @@
+plugins {
+    id 'fabric-loom' version "1.10.1"
+    id 'maven-publish'
+}
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+    archivesName = project.archives_base_name
+}
+
+repositories {
+    mavenCentral()
+    maven { url = "https://maven.shedaniel.me/" }
+    maven { url = "https://maven.terraformersmc.com/releases/" }
+}
+
+def gitCommitHash = { ->
+    try {
+        ExecOutput result = providers.exec {
+            commandLine = ['git', 'rev-parse', '--short', 'HEAD']
+            ignoreExitValue = true
+        }
+        return result.getResult().get().getExitValue() != 0 ? "<UnknownCommit>" : result.standardOutput.asText.get().strip()
+    } catch (Exception e) {
+        return "<UnknownCommit>"
+    }
+}
+
+def buildtime = { System.currentTimeSeconds() }
+processResources {
+    def time = buildtime()
+    def hash = gitCommitHash()
+    def version = project.version
+
+    inputs.properties("version": version, "commit": hash, "buildtime": time)
+    filesMatching("fabric.mod.json") {
+        expand "version": version, "commit": hash, "buildtime": time
+    }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    modCompileOnly "com.terraformersmc:modmenu:13.0.1"
+}
+
+def targetJavaVersion = 21
+tasks.withType(JavaCompile).configureEach {
+    it.options.encoding = "UTF-8"
+    if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
+        it.options.release = targetJavaVersion
+    }
+}
+
+java {
+    def javaVersion = JavaVersion.toVersion(targetJavaVersion)
+    if (JavaVersion.current() < javaVersion) {
+        toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
+    }
+}
+
+jar {
+    from("LICENSE") {
+        rename { "${it}_${project.archives_base_name}" }
+    }
+}
+
+remapJar {
+    archiveFileName = "${project.archives_base_name}.jar"
+}
+
+tasks.matching { it.name == 'sourcesJar' || it.name == 'remapSourcesJar' || it.name == 'javadocJar' }.configureEach {
+    enabled = false
+}
+
+// Локальная автоматическая синхронизация с тестовым инстансом ATLauncher
+def launcherModsDir = file("E:/ATLauncher/instances/FabulouslyOptimizedFPStest1214/mods")
+
+tasks.register('copyToLauncher', Copy) {
+    onlyIf {
+        launcherModsDir.exists()
+    }
+    dependsOn remapJar
+    from remapJar.archiveFile
+    into launcherModsDir
+    doLast {
+        println ">>> Copied ${remapJar.archiveFileName.get()} to ATLauncher instance mods folder!"
+    }
+}
+
+if (launcherModsDir.exists()) {
+    build.finalizedBy(copyToLauncher)
+}

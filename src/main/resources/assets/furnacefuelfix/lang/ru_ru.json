@@ -1,0 +1,4 @@
+{
+  "modmenu.nameTranslation.furnacefuelfix": "[MR] Fuel Fix",
+  "modmenu.descriptionTranslation.furnacefuelfix": "Умно перенаправляет топливо при Shift-клике в нижний слот печи, если верхний слот занят другим предметом или переполнен."
+}
