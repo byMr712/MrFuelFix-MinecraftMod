@@ -1,4 +1,4 @@
-﻿# Developer & Agent Guidelines — MrFuelFix (1.21.4)
+# Developer & Agent Guidelines — MrFuelFix (1.21.4)
 
 ## Версия и стек
 - **Minecraft:** 1.21.4
@@ -34,4 +34,4 @@ et.minecraft.screen.slot.Slot):**
 
 ## Команды сборки
 - Полная сборка JAR: `./gradlew build`
-- Выходной файл: `build/libs/MrFuelFix-Fabric-1.21.4-byMr712-v1.0.jar`
+- Выходной файл: `build/libs/MrFuelFix-Fabric-1.21.4-byMr712-v1.1.jar`
