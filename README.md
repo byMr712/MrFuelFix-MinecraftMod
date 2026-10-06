@@ -1,6 +1,6 @@
-> **Language:** Русский · [English](README.en.md)
+﻿> **Language:** Русский · [English](README.en.md)
 
-# [MR] Fuel Fix (Minecraft 1.21.4 Fabric)
+# [MR] Fuel Fix
 
 ![Java 21](https://img.shields.io/badge/Java-21-blue.svg)
 ![Minecraft](https://img.shields.io/badge/Minecraft-1.21.4-blue.svg)
@@ -35,7 +35,7 @@
 
 ## Установка
 
-1. Скачайте последнюю версию мода со страницы на [CurseForge](https://www.curseforge.com/minecraft/mc-mods/mr-fuel-fix) или [GitHub Releases](https://github.com/byMr712/MrFuelFix-1.21.4-MinecraftMod/releases).
+1. Скачайте последнюю версию мода со страницы на [CurseForge](https://www.curseforge.com/minecraft/mc-mods/mr-fuel-fix) или [GitHub Releases](https://github.com/byMr712/MrFuelFix-MinecraftMod/releases).
 2. Требуются:
    - [Fabric API](https://modrinth.com/mod/fabric-api)
 3. Поместите `.jar` файл в папку `mods`.

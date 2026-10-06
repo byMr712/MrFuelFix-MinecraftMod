@@ -1,6 +1,6 @@
-> **Language:** [Русский](README.md) · English
+﻿> **Language:** [Русский](README.md) · English
 
-# [MR] Fuel Fix (Minecraft 1.21.4 Fabric)
+# [MR] Fuel Fix
 
 ![Java 21](https://img.shields.io/badge/Java-21-blue.svg)
 ![Minecraft](https://img.shields.io/badge/Minecraft-1.21.4-blue.svg)
@@ -35,7 +35,7 @@ In vanilla Minecraft, wood items, sticks, and logs are **both smeltable and fuel
 
 ## Installation
 
-1. Download the latest release from [CurseForge](https://www.curseforge.com/minecraft/mc-mods/mr-fuel-fix) or [GitHub Releases](https://github.com/byMr712/MrFuelFix-1.21.4-MinecraftMod/releases).
+1. Download the latest release from [CurseForge](https://www.curseforge.com/minecraft/mc-mods/mr-fuel-fix) or [GitHub Releases](https://github.com/byMr712/MrFuelFix-MinecraftMod/releases).
 2. Requires:
    - [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api)
 3. Place the `.jar` file into your `mods` folder.
