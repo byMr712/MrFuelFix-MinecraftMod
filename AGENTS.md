@@ -34,4 +34,4 @@ et.minecraft.screen.slot.Slot):**
 
 ## Команды сборки
 - Полная сборка JAR: `./gradlew build`
-- Выходной файл: `build/libs/MrFuelFix-Fabric-1.21.11-byMr712-v1.0.jar`
+- Выходной файл: `build/libs/MrFuelFix-Fabric-1.21.11-byMr712-v1.1.jar`
