@@ -1,4 +1,4 @@
-{
+﻿{
   "schemaVersion": 1,
   "id": "furnacefuelfix",
   "version": "${version}",
@@ -8,8 +8,8 @@
     "Mr712"
   ],
   "contact": {
-    "homepage": "https://github.com/byMr712/MrFuelFix-1.21.4-MinecraftMod",
-    "sources": "https://github.com/byMr712/MrFuelFix-1.21.4-MinecraftMod"
+    "homepage": "https://github.com/byMr712/MrFuelFix-MinecraftMod",
+    "sources": "https://github.com/byMr712/MrFuelFix-MinecraftMod"
   },
   "license": "Apache-2.0",
   "icon": "assets/furnacefuelfix/icon.png",
