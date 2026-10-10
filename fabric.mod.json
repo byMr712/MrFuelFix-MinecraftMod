@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "id": "furnacefuelfix",
-  "version": "v1.0",
+  "version": "${version}",
   "name": "[MR] Fuel Fix",
   "description": "Fixes vanilla Minecraft issue where shift-clicking fuel into a furnace fails when the input slot is occupied, especially for dual-purpose items (logs, planks, sticks, etc.).",
   "authors": [
     "Mr712"
   ],
   "contact": {
-    "homepage": "https://github.com/byMr712/MrFuelFix-1.21.4-MinecraftMod",
-    "sources": "https://github.com/byMr712/MrFuelFix-1.21.4-MinecraftMod"
+    "homepage": "https://github.com/byMr712/MrFuelFix-MinecraftMod",
+    "sources": "https://github.com/byMr712/MrFuelFix-MinecraftMod"
   },
   "license": "Apache-2.0",
   "icon": "assets/furnacefuelfix/icon.png",
@@ -23,8 +23,8 @@
     "furnacefuelfix.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.16.10",
-    "minecraft": "~1.21.4",
+    "fabricloader": ">=0.19.5",
+    "minecraft": "~1.21.7",
     "java": ">=21"
   },
   "suggests": {
