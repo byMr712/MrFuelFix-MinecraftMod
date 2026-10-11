@@ -33,13 +33,14 @@ processResources {
     def time = buildtime()
     def hash = gitCommitHash()
     def version = project.version
+    def neoforgeVersion = version.startsWith('v') ? version.substring(1) : version
 
-    inputs.properties("version": version, "commit": hash, "buildtime": time, "minecraft_version": project.minecraft_version)
+    inputs.properties("version": version, "neoforge_version": neoforgeVersion, "commit": hash, "buildtime": time, "minecraft_version": project.minecraft_version)
     filesMatching("fabric.mod.json") {
         expand "version": version, "commit": hash, "buildtime": time
     }
     filesMatching("META-INF/neoforge.mods.toml") {
-        expand "version": version, "commit": hash, "buildtime": time, "minecraft_version": project.minecraft_version
+        expand "version": neoforgeVersion, "commit": hash, "buildtime": time, "minecraft_version": project.minecraft_version
     }
 }
 
