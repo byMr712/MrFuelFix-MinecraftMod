@@ -1,14 +1,15 @@
-﻿> **Language:** Русский · [English](README.en.md)
+> **Language:** Русский · [English](README.en.md)
 
 # [MR] Fuel Fix
 
 ![Java 21](https://img.shields.io/badge/Java-21-blue.svg)
 ![Minecraft](https://img.shields.io/badge/Minecraft-1.21.3-blue.svg)
 ![Fabric](https://img.shields.io/badge/Loader-Fabric-blue.svg)
+![NeoForge](https://img.shields.io/badge/Loader-NeoForge-orange.svg)
 ![ModMenu](https://img.shields.io/badge/ModMenu-Supported-blue.svg)
 ![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)
 
-Легковесный мод для **Minecraft 1.21.3 (Fabric)**, исправляющий раздражающую проблему с быстрой загрузкой топлива в печи по **Shift + ЛКМ**.
+Легковесный мод для **Minecraft 1.21.3 (Fabric / NeoForge)**, исправляющий раздражающую проблему с быстрой загрузкой топлива в печи по **Shift + ЛКМ**.
 
 | Ванильная игра | Игра с моим модом |
 | :---: | :---: |
@@ -36,10 +37,10 @@
 ## Установка
 
 1. Скачайте последнюю версию мода со страницы на [CurseForge](https://www.curseforge.com/minecraft/mc-mods/mr-fuel-fix) или [GitHub Releases](https://github.com/byMr712/MrFuelFix-MinecraftMod/releases).
-2. Требуются:
-   - [Fabric API](https://modrinth.com/mod/fabric-api)
-3. Поместите `.jar` файл в папку `mods`.
-4. Запустите игру.
+2. Выберите файл для вашего загрузчика (**Fabric** или **NeoForge**).
+3. Дополнительные моды (вроде Fabric API) не требуются.
+4. Поместите `.jar` файл в папку `mods`.
+5. Запустите игру.
 
 ## Для разработчиков: Техническое объяснение бага
 
