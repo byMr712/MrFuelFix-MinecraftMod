@@ -1,38 +1,54 @@
-﻿# Developer & Agent Guidelines — MrFuelFix (26.3)
+# Developer & Agent Guidelines — MrFuelFix (26.3)
 
 ## Версия и стек
 - **Minecraft:** 26.3
-- **Маппинги:** Официальные Mojang Mappings (Minecraft 26.x поставляется деобфусцированным, для Fabric Loom используется локальный `empty-mappings.jar`)
+- **Маппинги:** Официальные Mojang Mappings (Minecraft 26.x деобфусцирован, для Fabric Loom используется noIntermediateMappings() и локальный empty-mappings.jar)
+- **Поддерживаемые загрузчики:** Fabric и NeoForge
 - **Fabric Loader:** 0.19.5
 - **Fabric Loom:** 1.18-SNAPSHOT
 - **Fabric API:** 0.162.0+26.3
 - **Java:** 25 (таргет и рантайм Java 25)
 
-## Особенности реализации в данной версии
+## Мультилоадерная архитектура (Fabric + NeoForge)
 
-Начиная с версии Minecraft 26.x произошёл глобальный переход архитектуры на официальные названия пакетов и методов Mojang, а также обновление стандарта Java до 25:
-- **Целевой класс инжекции:** `net.minecraft.world.inventory.AbstractFurnaceMenu` (наследует `AbstractContainerMenu`)
-- **Переопределяемый метод:** `quickMoveStack(Player player, int slotIndex)` (вместо устаревшего `quickMove`)
+Мод собирается параллельно под два загрузчика из единого исходного кода:
+1. **Единый исходный код на официальных Mojang-маппингах:**
+   - Компилирует байткод, напрямую совместимый со средой выполнения NeoForge.
+   - Для Fabric плагин Fabric Loom автоматически выполняет ремаппинг байткода из Mojang-маппингов в Intermediary-маппинги при формировании Fabric JAR (emapJar).
+2. **Метаданные:**
+   - **Fabric:** src/main/resources/fabric.mod.json (декларирует точку входа и миксины для Fabric).
+   - **NeoForge:** src/main/resources/META-INF/neoforge.mods.toml (декларирует метаданные мода и подключение миксина urnacefuelfix.mixins.json через языковой загрузчик javafml).
+   - urnacefuelfix.mixins.json универсален и используется обоими загрузчиками.
+3. **Разделение артефактов в build.gradle:**
+   - **emapJar:** Собирает MrFuelFix-Fabric-26.3-byMr712-v1.1.jar с ремаппингом в Intermediary, исключая META-INF/neoforge.mods.toml.
+   - **
+eoforgeJar:** Собирает MrFuelFix-NeoForge-26.3-byMr712-v1.1.jar с оригинальным Mojang-байткодом, включая 
+eoforge.mods.toml и исключая специфичные для Fabric файлы (abric.mod.json, FurnaceFuelFixMod.class).
+   - Задача uild автоматически запускает оба таска (ssemble.dependsOn neoforgeJar), создавая оба JAR за один запуск.
+
+## Особенности реализации миксина
+- **Целевой класс инжекции:** 
+et.minecraft.world.inventory.AbstractFurnaceMenu (наследует AbstractContainerMenu)
+- **Переопределяемый метод:** quickMoveStack(Player player, int slotIndex)
 - **Вспомогательные методы:**
-  - `@Shadow protected abstract boolean canSmelt(ItemStack itemStack);` (вместо `isSmeltable`)
-  - `@Shadow protected abstract boolean isFuel(ItemStack itemStack);`
-- **Манипуляции со слотами (`net.minecraft.world.inventory.Slot`):**
-  - Проверка содержимого: `slot.hasItem()`, получение: `slot.getItem()`.
-  - Установка предмета: `slot.set(ItemStack.EMPTY)`.
-  - Обновление состояния: `slot.setChanged()` (вместо `markDirty()`).
-  - Взятие предмета игроком: `slot.onTake(player, sourceStack)` (вместо `onTakeItem()`).
-  - Перемещение: `this.moveItemStackTo(sourceStack, from, to, fromLast)` (вместо `insertItem`).
-- **Специфика Fabric Loom:**
-  - В `build.gradle` включено `loom { noIntermediateMappings() }`.
-  - Используется локальный `empty-mappings.jar` для корректной резолюции конфигурации `mappings`.
-  - В `furnacefuelfix.mixins.json` задан уровень `"compatibilityLevel": "JAVA_25"`.
+  - @Shadow protected abstract boolean canSmelt(ItemStack itemStack);
+  - @Shadow protected abstract boolean isFuel(ItemStack itemStack);
+- **Манипуляции со слотами (
+et.minecraft.world.inventory.Slot):**
+  - Проверка содержимого: slot.hasItem(), получение: slot.getItem().
+  - Установка предмета: slot.set(ItemStack.EMPTY).
+  - Обновление состояния: slot.setChanged().
+  - Взятие предмета игроком: slot.onTake(player, sourceStack).
+  - Перемещение: 	his.moveItemStackTo(sourceStack, from, to, fromLast).
 
 ## Логика фикса
-1. При `quickMoveStack` (Shift-клик) в слотах инвентаря игрока (индексы 3..38):
-2. Если предмет может плавиться (`canSmelt`) — сначала пытается зайти в слот 0 (плавка).
-3. Если предмет также является топливом (`isFuel`) и остался непустым (верхний слот полон или занят другим ресурсом) — остаток направляется в слот 1 (топливо).
-4. Если оба слота печи не приняли предмет — выполняется обмен между основным инвентарём и хотбаром.
+1. При quickMoveStack (Shift-клик) в слотах инвентаря игрока (индексы 3..38):
+2. Если предмет может плавиться (canSmelt) — сначала пытается зайти в слот 0 (плавка).
+3. Если предмет также является топливом (isFuel) и остался непустым — остаток отправляется в слот 1 (топливо).
+4. Если оба слота печи не приняли предмет — выполняется стандартный обмен между инвентарём и хотбаром.
 
 ## Команды сборки
-- Полная сборка JAR: `./gradlew build`
-- Выходной файл: `build/libs/MrFuelFix-Fabric-26.3-byMr712-v1.1.jar`
+- Полная сборка обоих JAR: ./gradlew build
+- Выходные файлы:
+  - uild/libs/MrFuelFix-Fabric-26.3-byMr712-v1.1.jar (для Fabric)
+  - uild/libs/MrFuelFix-NeoForge-26.3-byMr712-v1.1.jar (для NeoForge)
