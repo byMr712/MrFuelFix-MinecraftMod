@@ -19,10 +19,13 @@
    - **Fabric:** src/main/resources/fabric.mod.json (декларирует точку входа и миксины для Fabric).
    - **NeoForge:** src/main/resources/META-INF/neoforge.mods.toml (декларирует метаданные мода и подключение миксина urnacefuelfix.mixins.json через языковой загрузчик javafml).
    - urnacefuelfix.mixins.json универсален и используется обоими загрузчиками.
-3. **Разделение артефактов в build.gradle:**
-   - **emapJar:** Собирает MrFuelFix-Fabric-1.21.2-byMr712-v1.1.jar с ремаппингом в Intermediary, исключая META-INF/neoforge.mods.toml.
-   - **
-eoforgeJar:** Собирает MrFuelFix-NeoForge-1.21.2-byMr712-v1.1.jar с оригинальным Mojang-байткодом, включая 
+3. **Требования NeoForge к формату версии (Maven ArtifactVersion):**
+   - NeoForge валидирует версию мода строго по спецификации Maven (ArtifactVersion): версия **обязана начинаться с цифры** (например, 1.1), иначе загрузчик выбрасывает InvalidModFileException: Illegal version number specified v1.1 и крашит клиент в roken mod state.
+   - В uild.gradle для META-INF/neoforge.mods.toml ведущий символ  автоматически отсекается (ersion.startsWith('v') ? version.substring(1) : version).
+   - При этом в abric.mod.json и в именах файлов JAR остаётся полная версия 1.1.
+4. **Разделение артефактов в build.gradle:**
+   - **remapJar:** Собирает MrFuelFix-Fabric-1.21.2-byMr712-v1.1.jar с ремаппингом в Intermediary, исключая META-INF/neoforge.mods.toml.
+   - **neoforgeJar:** Собирает MrFuelFix-NeoForge-1.21.2-byMr712-v1.1.jar с оригинальным Mojang-байткодом, включая 
 eoforge.mods.toml и исключая специфичные для Fabric файлы (abric.mod.json, FurnaceFuelFixMod.class).
    - Задача uild автоматически запускает оба таска (ssemble.dependsOn neoforgeJar), создавая оба JAR за один запуск.
 
