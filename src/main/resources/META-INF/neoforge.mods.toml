@@ -1,0 +1,30 @@
+modLoader="javafml"
+loaderVersion="[1,)"
+license="Apache-2.0"
+issueTrackerURL="https://github.com/byMr712/MrFuelFix-MinecraftMod/issues"
+
+[[mods]]
+modId="furnacefuelfix"
+version="${version}"
+displayName="[MR] Fuel Fix"
+displayURL="https://github.com/byMr712/MrFuelFix-MinecraftMod"
+logoFile="assets/furnacefuelfix/icon.png"
+authors="byMr712"
+description='''A lightweight mod for Minecraft, fixing the annoying issue with shift-clicking fuel into furnaces.'''
+
+[[mixins]]
+config="furnacefuelfix.mixins.json"
+
+[[dependencies.furnacefuelfix]]
+modId="neoforge"
+type="required"
+versionRange="[1,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.furnacefuelfix]]
+modId="minecraft"
+type="required"
+versionRange="[${minecraft_version}]"
+ordering="NONE"
+side="BOTH"
