@@ -19,10 +19,10 @@
    - **Fabric:** `src/main/resources/fabric.mod.json` (декларирует точку входа и миксины для Fabric).
    - **NeoForge:** `src/main/resources/META-INF/neoforge.mods.toml` (декларирует метаданные мода с `logoFile="icon.png"` и подключение миксина `furnacefuelfix.mixins.json` через языковой загрузчик `javafml`).
    - `furnacefuelfix.mixins.json` универсален и используется обоими загрузчиками.
-3. **Требования NeoForge к формату версии (Maven ArtifactVersion):**
-   - NeoForge валидирует версию мода строго по спецификации Maven (`ArtifactVersion`): версия **обязана начинаться с цифры** (например, `1.1`), иначе загрузчик выбрасывает `InvalidModFileException: Illegal version number specified v1.1` и крашит клиент в `broken mod state`.
-   - В `build.gradle` для `META-INF/neoforge.mods.toml` ведущий символ `v` автоматически отсекается (`version.startsWith('v') ? version.substring(1) : version`).
-   - При этом в `fabric.mod.json` и в именах файлов JAR остаётся полная версия `v1.1`.
+3. **Формат версии внутри мода (ArtifactVersion без префикса `v`):**
+   - Внутри мода (`gradle.properties`, `fabric.mod.json`, `neoforge.mods.toml`) версия стандартизирована без префикса `v` (`1.1`).
+   - Это гарантирует соответствие спецификации Maven (`ArtifactVersion`), требуемой NeoForge (версия обязана начинаться с цифры во избежание сбоя `InvalidModFileException`), а также единообразие метаданных для обоих загрузчиков.
+   - При этом в именах файлов JAR сохраняется формат `*-v1.1.jar`.
 4. **Разделение артефактов в build.gradle:**
    - **remapJar:** Собирает `MrFuelFix-Fabric-26.1-byMr712-v1.1.jar` с ремаппингом в Intermediary, исключая `META-INF/neoforge.mods.toml`.
    - **neoforgeJar:** Собирает `MrFuelFix-NeoForge-26.1-byMr712-v1.1.jar` с оригинальным Mojang-байткодом, включая `neoforge.mods.toml`, упаковывая `icon.png` в корень архива и исключая специфичные для Fabric файлы (`fabric.mod.json`, `FurnaceFuelFixMod.class`).
