@@ -8,7 +8,7 @@ modId="furnacefuelfix"
 version="${version}"
 displayName="[MR] Fuel Fix"
 displayURL="https://github.com/byMr712/MrFuelFix-MinecraftMod"
-logoFile="assets/furnacefuelfix/icon.png"
+logoFile="icon.png"
 authors="byMr712"
 description='''A lightweight mod for Minecraft, fixing the annoying issue with shift-clicking fuel into furnaces.'''
 
