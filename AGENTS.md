@@ -17,7 +17,7 @@
    - Для Fabric плагин Fabric Loom автоматически выполняет ремаппинг байткода из Mojang-маппингов в Intermediary-маппинги при формировании Fabric JAR (`remapJar`).
 2. **Метаданные:**
    - **Fabric:** `src/main/resources/fabric.mod.json` (декларирует точку входа и миксины для Fabric).
-   - **NeoForge:** `src/main/resources/META-INF/neoforge.mods.toml` (декларирует метаданные мода и подключение миксина `furnacefuelfix.mixins.json` через языковой загрузчик `javafml`).
+   - **NeoForge:** `src/main/resources/META-INF/neoforge.mods.toml` (декларирует метаданные мода с `logoFile="icon.png"` и подключение миксина `furnacefuelfix.mixins.json` через языковой загрузчик `javafml`).
    - `furnacefuelfix.mixins.json` универсален и используется обоими загрузчиками.
 3. **Требования NeoForge к формату версии (Maven ArtifactVersion):**
    - NeoForge валидирует версию мода строго по спецификации Maven (`ArtifactVersion`): версия **обязана начинаться с цифры** (например, `1.1`), иначе загрузчик выбрасывает `InvalidModFileException: Illegal version number specified v1.1` и крашит клиент в `broken mod state`.
@@ -25,7 +25,7 @@
    - При этом в `fabric.mod.json` и в именах файлов JAR остаётся полная версия `v1.1`.
 4. **Разделение артефактов в build.gradle:**
    - **remapJar:** Собирает `MrFuelFix-Fabric-1.21.8-byMr712-v1.1.jar` с ремаппингом в Intermediary, исключая `META-INF/neoforge.mods.toml`.
-   - **neoforgeJar:** Собирает `MrFuelFix-NeoForge-1.21.8-byMr712-v1.1.jar` с оригинальным Mojang-байткодом, включая `neoforge.mods.toml` и исключая специфичные для Fabric файлы (`fabric.mod.json`, `FurnaceFuelFixMod.class`).
+   - **neoforgeJar:** Собирает `MrFuelFix-NeoForge-1.21.8-byMr712-v1.1.jar` с оригинальным Mojang-байткодом, включая `neoforge.mods.toml`, упаковывая `icon.png` в корень архива и исключая специфичные для Fabric файлы (`fabric.mod.json`, `FurnaceFuelFixMod.class`).
    - Задача `build` автоматически запускает оба таска (`assemble.dependsOn neoforgeJar`), создавая оба JAR за один запуск.
 
 ## Особенности реализации миксина
